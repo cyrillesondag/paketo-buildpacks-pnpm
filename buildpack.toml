@@ -1,0 +1,58 @@
+api = "0.7"
+
+[buildpack]
+  homepage = "https://github.com/paketo-buildpacks/pnpm"
+  id = "paketo-buildpacks/pnpm"
+  name = "Paketo Buildpack for Pnpm"
+  sbom-formats = ["application/vnd.cyclonedx+json", "application/spdx+json", "application/vnd.syft+json"]
+
+  [[buildpack.licenses]]
+    type = "Apache-2.0"
+    uri = "https://github.com/paketo-buildpacks/pnpm/blob/main/LICENSE"
+
+[metadata]
+  include-files = ["bin/run", "bin/build", "bin/detect", "buildpack.toml"]
+  pre-package = "./scripts/build.sh"
+  [metadata.default_versions]
+    pnpm = "1.*"
+
+  [[metadata.dependencies]]
+    checksum = "sha256:3235ba55a7e669476697fe4506df7fe5179a4448b2c22c96039ff6800c9a7daa"
+    cpe = "cpe:2.3:a:pnpmpkg:yarn:1.22.19:*:*:*:*:*:*:*"
+    id = "pnpm"
+    licenses = ["BSD-2-Clause", "BSD-2-Clause-NetBSD"]
+    name = "Pnpm"
+    purl = "pkg:generic/pnpm@1.22.19?checksum=732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e&download_url=https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz"
+    source = "https://github.com/pnpmpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz"
+    source-checksum = "sha256:732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy", "*"]
+    uri = "https://artifacts.paketo.io/pnpm/yarn_1.22.19_linux_noarch_bionic_3235ba55.tgz"
+    version = "1.22.19"
+
+  [[metadata.dependencies]]
+    checksum = "sha256:88268464199d1611fcf73ce9c0a6c4d44c7d5363682720d8506f6508addf36a0"
+    cpe = "cpe:2.3:a:yarnpkg:yarn:1.22.22:*:*:*:*:*:*:*"
+    id = "yarn"
+    licenses = ["BSD-2-Clause"]
+    name = "Yarn"
+    purl = "pkg:generic/yarn@1.22.22?checksum=88268464199d1611fcf73ce9c0a6c4d44c7d5363682720d8506f6508addf36a0&download_url=https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-v1.22.22.tar.gz"
+    source = "https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-v1.22.22.tar.gz"
+    source-checksum = "sha256:88268464199d1611fcf73ce9c0a6c4d44c7d5363682720d8506f6508addf36a0"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    strip-components = 1
+    uri = "https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-v1.22.22.tar.gz"
+    version = "1.22.22"
+
+  [[metadata.dependency-constraints]]
+    constraint = "1.*"
+    id = "yarn"
+    patches = 2
+
+[[stacks]]
+  id = "io.buildpacks.stacks.bionic"
+
+[[stacks]]
+  id = "io.buildpacks.stacks.jammy"
+
+[[stacks]]
+  id = "*"

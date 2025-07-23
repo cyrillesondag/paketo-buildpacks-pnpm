@@ -1,0 +1,8 @@
+{
+  "builders": [
+    "index.docker.io/paketobuildpacks/builder-jammy-buildpackless-base:latest",
+    "index.docker.io/paketobuildpacks/builder-ubi8-buildpackless-base:latest"
+  ],
+  "buildplan": "github.com/paketo-community/build-plan",
+  "ubi-nodejs-extension": "github.com/paketo-buildpacks/ubi-nodejs-extension"
+}

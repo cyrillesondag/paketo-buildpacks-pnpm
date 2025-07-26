@@ -64,7 +64,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 				Name: "pnpm",
 				Metadata: paketosbom.BOMMetadata{
 					URI:     "pnpm-dependency-uri",
-					Version: "pnpm-dependenct-version",
+					Version: "pnpm-dependency-version",
 					Checksum: paketosbom.BOMChecksum{
 						Algorithm: paketosbom.SHA256,
 						Hash:      "pnpm-dependency-sha",
@@ -82,7 +82,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			WorkingDir: workingDir,
 			CNBPath:    cnbDir,
 			Stack:      "some-stack",
-			BuildpackInfo: packit.BuildpackInfo{
+			BuildpackInfo: packit.Info{
 				Name:        "Some Buildpack",
 				Version:     "some-version",
 				SBOMFormats: []string{sbom.CycloneDXFormat, sbom.SPDXFormat},
@@ -224,7 +224,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 
 		Expect(buffer.String()).To(ContainSubstring("Some Buildpack some-version"))
 		Expect(buffer.String()).To(ContainSubstring("Executing build process"))
-		Expect(buffer.String()).To(ContainSubstring("Installing Pnpm"))
+		Expect(buffer.String()).To(ContainSubstring("Installing PNPM"))
 	})
 
 	context("when the plan entry requires the dependency during the build and launch phases", func() {

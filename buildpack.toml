@@ -14,16 +14,16 @@ api = "0.7"
   include-files = ["bin/run", "bin/build", "bin/detect", "buildpack.toml"]
   pre-package = "./scripts/build.sh"
   [metadata.default_versions]
-    pnpm = "1.*"
+    pnpm = "10.*"
 
   [[metadata.dependencies]]
     checksum = "sha256:3235ba55a7e669476697fe4506df7fe5179a4448b2c22c96039ff6800c9a7daa"
-    cpe = "cpe:2.3:a:pnpmpkg:yarn:1.22.19:*:*:*:*:*:*:*"
+    cpe = "cpe:2.3:a:pnpm:pnpm:1.22.19:*:*:*:*:*:*:*"
     id = "pnpm"
     licenses = ["BSD-2-Clause", "BSD-2-Clause-NetBSD"]
     name = "Pnpm"
     purl = "pkg:generic/pnpm@1.22.19?checksum=732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e&download_url=https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz"
-    source = "https://github.com/pnpmpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz"
+    source = "https://github.com/pnpm/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz"
     source-checksum = "sha256:732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e"
     stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy", "*"]
     uri = "https://artifacts.paketo.io/pnpm/yarn_1.22.19_linux_noarch_bionic_3235ba55.tgz"
@@ -44,8 +44,8 @@ api = "0.7"
     version = "1.22.22"
 
   [[metadata.dependency-constraints]]
-    constraint = "1.*"
-    id = "yarn"
+    constraint = "10.*"
+    id = "pnpm"
     patches = 2
 
 [[stacks]]

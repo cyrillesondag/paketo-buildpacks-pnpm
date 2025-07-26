@@ -143,6 +143,10 @@ func (g GithubClient) GetReleaseTags(org, repo string) ([]GithubRelease, error) 
 				CreatedDate:   release.CreatedAt,
 			})
 		}
+
+		if page == 10 {
+			break
+		}
 	}
 
 	return allReleases, nil

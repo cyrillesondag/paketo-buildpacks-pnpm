@@ -31,13 +31,23 @@ func (w WebClient) Download(url, filename string, options ...RequestOption) erro
 	if err != nil {
 		return err
 	}
-	defer responseBody.Close()
+	defer func(responseBody io.ReadCloser) {
+		err := responseBody.Close()
+		if err != nil {
+
+		}
+	}(responseBody)
 
 	file, err := os.OpenFile(filename, os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0644)
 	if err != nil {
 		return fmt.Errorf("failed to open file: %w", err)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
 
 	_, err = io.Copy(file, responseBody)
 	if err != nil {
@@ -52,7 +62,12 @@ func (w WebClient) Get(url string, options ...RequestOption) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer responseBody.Close()
+	defer func(responseBody io.ReadCloser) {
+		err := responseBody.Close()
+		if err != nil {
+
+		}
+	}(responseBody)
 
 	body, err := io.ReadAll(responseBody)
 	if err != nil {
@@ -66,7 +81,12 @@ func (w WebClient) Post(url string, requestBody []byte, options ...RequestOption
 	if err != nil {
 		return nil, err
 	}
-	defer responseBody.Close()
+	defer func(responseBody io.ReadCloser) {
+		err := responseBody.Close()
+		if err != nil {
+
+		}
+	}(responseBody)
 
 	body, err := io.ReadAll(responseBody)
 	if err != nil {
@@ -87,6 +107,10 @@ func (w WebClient) makeRequest(method string, url string, body io.Reader, option
 
 	for _, option := range options {
 		option(request)
+	}
+
+	if os.Getenv("GITHUB_TOKEN") != "" {
+		request.Header.Set("Authorization", "Bearer "+os.Getenv("GITHUB_TOKEN"))
 	}
 
 	response, err := w.httpClient.Do(request)

@@ -1,7 +1,11 @@
-.PHONY: retrieve
+.PHONY: test retrieve
 
 id:
 	@echo pnpm
+
+test:
+	@cd test; \
+	./run-test --version $(version) --tarballPath $(tarballPath)
 
 retrieve:
 	@cd retrieval; \

@@ -17,19 +17,6 @@ api = "0.7"
     pnpm = "10.*"
 
   [[metadata.dependencies]]
-    checksum = "sha256:5bf591d8a3d5e14dbb15524b65a139a81f4b5954bc214ba0c014968899086c3a"
-    cpe = "cpe:2.3:a:pnpm:pnpm:10.17.1:*:*:*:*:*:*:*"
-    id = "pnpm"
-    name = "pnpm"
-    purl = "pkg:generic/pnpm@10.17.1?checksum=sha256:5bf591d8a3d5e14dbb15524b65a139a81f4b5954bc214ba0c014968899086c3a&download_url=https://github.com/pnpm/pnpm/releases/download/v10.17.1/pnpm-linux-x64"
-    source = "https://github.com/pnpm/pnpm/releases/download/v10.17.1/pnpm-linux-x64"
-    source-checksum = "sha256:5bf591d8a3d5e14dbb15524b65a139a81f4b5954bc214ba0c014968899086c3a"
-    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
-    strip-components = 1
-    uri = "https://github.com/pnpm/pnpm/releases/download/v10.17.1/pnpm-linux-x64"
-    version = "10.17.1"
-
-  [[metadata.dependencies]]
     checksum = "sha256:d267e29f26d4f5c7466ee11805be54b599604ca61cc0b19499f517a46317b563"
     cpe = "cpe:2.3:a:pnpm:pnpm:10.18.0:*:*:*:*:*:*:*"
     id = "pnpm"
@@ -41,6 +28,19 @@ api = "0.7"
     strip-components = 1
     uri = "https://github.com/pnpm/pnpm/releases/download/v10.18.0/pnpm-linux-x64"
     version = "10.18.0"
+
+  [[metadata.dependencies]]
+    checksum = "sha256:6f8ae185edfb0ef1ed4fd94f399b9b8a990eab5636aaeac9b0d3556ce0143e27"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.18.1:*:*:*:*:*:*:*"
+    id = "pnpm"
+    name = "pnpm"
+    purl = "pkg:generic/pnpm@10.18.1?checksum=sha256:6f8ae185edfb0ef1ed4fd94f399b9b8a990eab5636aaeac9b0d3556ce0143e27&download_url=https://github.com/pnpm/pnpm/releases/download/v10.18.1/pnpm-linux-x64"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.18.1/pnpm-linux-x64"
+    source-checksum = "sha256:6f8ae185edfb0ef1ed4fd94f399b9b8a990eab5636aaeac9b0d3556ce0143e27"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    strip-components = 1
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.18.1/pnpm-linux-x64"
+    version = "10.18.1"
 
   [[metadata.dependency-constraints]]
     constraint = "10.*"

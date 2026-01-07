@@ -224,7 +224,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 
 		Expect(buffer.String()).To(ContainSubstring("Some Buildpack some-version"))
 		Expect(buffer.String()).To(ContainSubstring("Executing build process"))
-		Expect(buffer.String()).To(ContainSubstring("Installing PNPM"))
+		Expect(buffer.String()).To(ContainSubstring("Installing pnpm"))
 	})
 
 	context("when the plan entry requires the dependency during the build and launch phases", func() {

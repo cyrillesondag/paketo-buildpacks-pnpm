@@ -94,7 +94,7 @@ func Build(
 
 		pnpmLayer.Launch, pnpmLayer.Build, pnpmLayer.Cache = launch, build, build
 
-		logger.Subprocess("Installing PNPM")
+		logger.Subprocess("Installing pnpm")
 
 		duration, err := clock.Measure(func() error {
 			return dependencyManager.Deliver(dependency, context.CNBPath, pnpmLayer.Path, context.Platform.Path)
@@ -111,7 +111,7 @@ func Build(
 		}
 
 		if sbomDisabled {
-			logger.Subprocess("Skipping SBOM generation for PNPM")
+			logger.Subprocess("Skipping SBOM generation for pnpm")
 			logger.Break()
 		} else {
 			logger.GeneratingSBOM(pnpmLayer.Path)
@@ -136,6 +136,10 @@ func Build(
 
 		pnpmLayer.Metadata = map[string]interface{}{
 			DependencyCacheKey: dependency.Checksum,
+		}
+
+		pnpmLayer.ExecD = []string{
+			filepath.Join(pnpmLayer.Path, "pnpm"),
 		}
 
 		return packit.BuildResult{

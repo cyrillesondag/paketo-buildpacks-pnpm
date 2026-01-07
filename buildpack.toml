@@ -3,7 +3,7 @@ api = "0.7"
 [buildpack]
   homepage = "https://github.com/paketo-buildpacks/pnpm"
   id = "paketo-buildpacks/pnpm"
-  name = "Paketo Buildpack for Pnpm"
+  name = "Paketo Buildpack for pnpm"
   sbom-formats = ["application/vnd.cyclonedx+json", "application/spdx+json", "application/vnd.syft+json"]
 
   [[buildpack.licenses]]
@@ -36,7 +36,7 @@ api = "0.7"
     name = "pnpm"
     source = "https://github.com/pnpm/pnpm/releases/download/v10.13.0/pnpm-linux-x64"
     source-checksum = "sha256:9ee4e9c534db2d52b8aa4f953e53b512cb0772cdf5fe90faa13ea08f1f3fdffb"
-    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy", "*"]
     uri = "https://github.com/pnpm/pnpm/releases/download/v10.13.0/pnpm-linux-x64"
     version = "10.13.0"
 
@@ -53,5 +53,4 @@ api = "0.7"
 
 [[stacks]]
   id = "*"
-
 

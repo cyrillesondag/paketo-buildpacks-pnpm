@@ -100,7 +100,7 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 			Expect(logs).To(ContainLines(
 				MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, settings.Buildpack.Name)),
 				"  Executing build process",
-				MatchRegexp(`    Installing Pnpm`),
+				MatchRegexp(`    Installing pnpm`),
 				MatchRegexp(`      Completed in ([0-9]*(\.[0-9]*)?[a-z]+)+`),
 				"",
 				fmt.Sprintf("  Generating SBOM for /layers/%s/pnpm", strings.ReplaceAll(settings.Buildpack.ID, "/", "_")),
@@ -194,10 +194,10 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 			Expect(logs).To(ContainLines(
 				MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, settings.Buildpack.Name)),
 				"  Executing build process",
-				MatchRegexp(`    Installing Pnpm`),
+				MatchRegexp(`    Installing pnpm`),
 				MatchRegexp(`      Completed in ([0-9]*(\.[0-9]*)?[a-z]+)+`),
 				"",
-				"    Skipping SBOM generation for Pnpm",
+				"    Skipping SBOM generation for pnpm",
 			))
 
 			// check that SBOM files were not generated

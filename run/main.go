@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/paketo-buildpacks/pnpm"
 	"os"
+
+	"github.com/paketo-buildpacks/pnpm"
 
 	"github.com/paketo-buildpacks/packit/v2"
 	"github.com/paketo-buildpacks/packit/v2/cargo"

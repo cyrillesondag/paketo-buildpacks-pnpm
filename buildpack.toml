@@ -17,30 +17,30 @@ api = "0.7"
     pnpm = "10.*"
 
   [[metadata.dependencies]]
-    checksum = "sha256:6e5f25fad67ba1b4fe1050c8992ced33ce8689245a834ddec149940a20c2be5c"
-    cpe = "cpe:2.3:a:pnpm:pnpm:10.23.0:*:*:*:*:*:*:*"
+    checksum = "sha256:6b64f60b5ce00c6d8d6378d3c9e8a202415cb1f225c4175316eb09bbe877e622"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.26.2:*:*:*:*:*:*:*"
     id = "pnpm"
     name = "pnpm"
-    purl = "pkg:generic/pnpm@10.23.0?checksum=sha256:6e5f25fad67ba1b4fe1050c8992ced33ce8689245a834ddec149940a20c2be5c&download_url=https://github.com/pnpm/pnpm/releases/download/v10.23.0/pnpm-linux-x64"
-    source = "https://github.com/pnpm/pnpm/releases/download/v10.23.0/pnpm-linux-x64"
-    source-checksum = "sha256:6e5f25fad67ba1b4fe1050c8992ced33ce8689245a834ddec149940a20c2be5c"
+    purl = "pkg:generic/pnpm@10.26.2?checksum=sha256:6b64f60b5ce00c6d8d6378d3c9e8a202415cb1f225c4175316eb09bbe877e622&download_url=https://github.com/pnpm/pnpm/releases/download/v10.26.2/pnpm-linux-x64"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.26.2/pnpm-linux-x64"
+    source-checksum = "sha256:6b64f60b5ce00c6d8d6378d3c9e8a202415cb1f225c4175316eb09bbe877e622"
     stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
     strip-components = 1
-    uri = "https://github.com/pnpm/pnpm/releases/download/v10.23.0/pnpm-linux-x64"
-    version = "10.23.0"
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.26.2/pnpm-linux-x64"
+    version = "10.26.2"
 
   [[metadata.dependencies]]
-    checksum = "sha256:985824ae016db3c7bbd7b39dcb4e6f5740b11cce79f5c43d5e5e640768fd4806"
-    cpe = "cpe:2.3:a:pnpm:pnpm:10.24.0:*:*:*:*:*:*:*"
+    checksum = "sha256:0bbea51c4fe9dc0b5b94f147a2b7441fba3a75fe54f03a317149d738408e0496"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.27.0:*:*:*:*:*:*:*"
     id = "pnpm"
     name = "pnpm"
-    purl = "pkg:generic/pnpm@10.24.0?checksum=sha256:985824ae016db3c7bbd7b39dcb4e6f5740b11cce79f5c43d5e5e640768fd4806&download_url=https://github.com/pnpm/pnpm/releases/download/v10.24.0/pnpm-linux-x64"
-    source = "https://github.com/pnpm/pnpm/releases/download/v10.24.0/pnpm-linux-x64"
-    source-checksum = "sha256:985824ae016db3c7bbd7b39dcb4e6f5740b11cce79f5c43d5e5e640768fd4806"
+    purl = "pkg:generic/pnpm@10.27.0?checksum=sha256:0bbea51c4fe9dc0b5b94f147a2b7441fba3a75fe54f03a317149d738408e0496&download_url=https://github.com/pnpm/pnpm/releases/download/v10.27.0/pnpm-linux-x64"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.27.0/pnpm-linux-x64"
+    source-checksum = "sha256:0bbea51c4fe9dc0b5b94f147a2b7441fba3a75fe54f03a317149d738408e0496"
     stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
     strip-components = 1
-    uri = "https://github.com/pnpm/pnpm/releases/download/v10.24.0/pnpm-linux-x64"
-    version = "10.24.0"
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.27.0/pnpm-linux-x64"
+    version = "10.27.0"
 
   [[metadata.dependency-constraints]]
     constraint = "10.*"

@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/Masterminds/semver/v3"
-	"github.com/joshuatcasey/libdependency/retrieve"
-	"github.com/joshuatcasey/libdependency/upstream"
-	"github.com/joshuatcasey/libdependency/versionology"
+	"github.com/paketo-buildpacks/libdependency/github"
+	"github.com/paketo-buildpacks/libdependency/retrieve"
+	"github.com/paketo-buildpacks/libdependency/upstream"
+	"github.com/paketo-buildpacks/libdependency/versionology"
 	"github.com/paketo-buildpacks/packit/v2/cargo"
 )
 
@@ -29,66 +29,32 @@ func (pnpmMetadata PnpmMetadata) Version() *semver.Version {
 }
 
 func main() {
-	retrieve.NewMetadata("pnpm", getAllVersions, generateMetadata)
+	retrieve.NewMetadataWithPlatforms("pnpm", getAllVersions, generateMetadataWithPlatform)
 }
 
-func generateMetadata(versionFetcher versionology.VersionFetcher) ([]versionology.Dependency, error) {
-	version := versionFetcher.Version().String()
-	releases, err := NewGithubClient(NewWebClient()).GetReleaseTags("pnpm", "pnpm")
+func generateMetadataWithPlatform(versionFetcher versionology.VersionFetcher, platform retrieve.Platform) ([]versionology.Dependency, error) {
+
+	dependency, err := createDependencyVersionWithPlatform(versionFetcher, platform)
 	if err != nil {
-		return nil, fmt.Errorf("could not get releases: %w", err)
+		return nil, fmt.Errorf("could not create pnpm version: %w", err)
 	}
 
-	for _, release := range releases {
-		tagName := "v" + version
-		if release.TagName == tagName {
-			dependency, err := createDependencyVersion(version, tagName)
-			if err != nil {
-				return nil, fmt.Errorf("could not create pnpm version: %w", err)
-			}
-
-			return []versionology.Dependency{{
-				ConfigMetadataDependency: dependency,
-				SemverVersion:            versionFetcher.Version(),
-			}}, nil
-		}
-	}
-
-	return nil, fmt.Errorf("could not find pnpm version %s", version)
+	return []versionology.Dependency{{
+		ConfigMetadataDependency: dependency,
+		SemverVersion:            versionFetcher.Version(),
+	}}, nil
 }
 
 func getAllVersions() (versionology.VersionFetcherArray, error) {
-	githubClient := NewGithubClient(NewWebClient())
-	releases, err := githubClient.GetReleaseTags("pnpm", "pnpm")
-	if err != nil {
-		return nil, fmt.Errorf("could not get releases: %w", err)
-	}
-
-	var versions []versionology.VersionFetcher
-	for _, release := range releases {
-		versionTagName := strings.TrimPrefix(release.TagName, "v")
-		version, err := semver.NewVersion(versionTagName)
-		if err != nil {
-			return nil, fmt.Errorf("failed to parse version: %w", err)
-		}
-		/** Versions less than 5.18.10 does not provide assets **/
-		if version.LessThan(semver.MustParse("5.18.10")) {
-			continue
-		}
-		if version.Prerelease() != "" {
-			continue
-		}
-
-		versions = append(versions, PnpmMetadata{version})
-	}
-
-	return versions, nil
-
+	return github.GetAllVersions(os.Getenv("GITHUB_TOKEN"), "pnpm", "pnpm")()
 }
 
-func createDependencyVersion(version, tagName string) (cargo.ConfigMetadataDependency, error) {
+func createDependencyVersionWithPlatform(versionFetcher versionology.VersionFetcher, platform retrieve.Platform) (cargo.ConfigMetadataDependency, error) {
 	webClient := NewWebClient()
 	githubClient := NewGithubClient(webClient)
+
+	version := versionFetcher.Version().String()
+	tagName := versionFetcher.Version().Original()
 
 	releaseAssetDir, err := os.MkdirTemp("", "pnpm")
 	if err != nil {
@@ -103,7 +69,12 @@ func createDependencyVersion(version, tagName string) (cargo.ConfigMetadataDepen
 
 	releaseAssetPath := filepath.Join(releaseAssetDir, fmt.Sprintf("pnpm-%s.tar.gz", tagName))
 
-	assetName := "pnpm-linux-x64"
+	arch, err := archName(platform)
+	if err != nil {
+		return cargo.ConfigMetadataDependency{}, fmt.Errorf("failed to find architecture name: %w", err)
+	}
+
+	assetName := fmt.Sprintf("pnpm-%s-%s", platform.OS, arch)
 	assetUrl, err := githubClient.DownloadReleaseAsset("pnpm", "pnpm", tagName, assetName, releaseAssetPath)
 	if err != nil {
 		if errors.Is(err, AssetNotFound{AssetName: assetName}) {
@@ -143,4 +114,15 @@ func createDependencyVersion(version, tagName string) (cargo.ConfigMetadataDepen
 		DeprecationDate: nil,
 		StripComponents: 1,
 	}, nil
+}
+
+func archName(platform retrieve.Platform) (string, error) {
+	switch platform.Arch {
+	case "amd64":
+		return "x64", nil
+	case "arm64":
+		return "arm64", nil
+	default:
+		return "", errors.New("not supported architecture")
+	}
 }

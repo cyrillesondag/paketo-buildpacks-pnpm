@@ -17,6 +17,7 @@ api = "0.7"
     pnpm = "10.*"
 
   [[metadata.dependencies]]
+    arch = "amd64"
     checksum = "sha256:e1cab530ea8252eb90e4add71d95838fd6f2656e6977f120df5ecb6f5b2822e0"
     cpe = "cpe:2.3:a:pnpm:pnpm:10.13.1:*:*:*:*:*:*:*"
     purl = "pkg:generic/pnpm@10.13.1?checksum=sha256:e1cab530ea8252eb90e4add71d95838fd6f2656e6977f120df5ecb6f5b2822e0\u0026download_url=https://github.com/pnpm/pnpm/releases/download/v10.13.1/pnpm-linux-x64"

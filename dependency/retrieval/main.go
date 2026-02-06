@@ -100,11 +100,13 @@ func createDependencyVersionWithPlatform(versionFetcher versionology.VersionFetc
 	}
 
 	return cargo.ConfigMetadataDependency{
+		Arch:            platform.Arch,
 		CPE:             fmt.Sprintf("cpe:2.3:a:pnpm:pnpm:%s:*:*:*:*:*:*:*", version),
 		Checksum:        dependencySHA,
 		ID:              "pnpm",
 		Licenses:        retrieve.LookupLicenses(asset.BrowserDownloadUrl, upstream.DefaultDecompress),
 		Name:            "pnpm",
+		OS:              platform.OS,
 		PURL:            retrieve.GeneratePURL("pnpm", version, dependencySHA, asset.BrowserDownloadUrl),
 		Source:          asset.BrowserDownloadUrl,
 		SourceChecksum:  dependencySHA,

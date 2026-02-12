@@ -81,7 +81,7 @@ api = "0.7"
     version = "10.29.2"
 
   [[metadata.dependency-constraints]]
-    constraint = "10.*"
+    constraint = "9.*"
     id = "pnpm"
     patches = 2
 

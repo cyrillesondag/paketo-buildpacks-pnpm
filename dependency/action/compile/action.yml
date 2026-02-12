@@ -1,6 +1,6 @@
-name: 'Compile Node on Target'
+name: 'Compile NPM on Target'
 description: |
-  Compiles node given a version, output directory, and a target image to compile on
+  Compiles HTTPD given a version, output directory, and a target image to compile on
 
 inputs:
   version:
@@ -11,6 +11,12 @@ inputs:
     required: true
   target:
     description: 'dependency OS target variant'
+    required: true
+  os:
+    description: 'platform OS (e.g., linux)'
+    required: true
+  arch:
+    description: 'platform architecture (e.g., amd64)'
     required: true
 
 runs:

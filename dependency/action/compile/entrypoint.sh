@@ -4,7 +4,11 @@ set -eu
 set -o pipefail
 
 function main() {
-  local version output_dir target temp_dir
+  local version output_dir target temp_dir os arch
+
+  # default values
+  os="linux"
+  arch="x64"
 
   while [ "${#}" != 0 ]; do
     case "${1}" in
@@ -20,6 +24,16 @@ function main() {
 
       --target)
         target="${2}"
+        shift 2
+        ;;
+
+       --os)
+        os="${2}"
+        shift 2
+        ;;
+
+      --arch)
+        arch="${2}"
         shift 2
         ;;
 
@@ -48,14 +62,31 @@ function main() {
     exit 1
   fi
 
+  case "${arch}" in
+    x64|amd64)
+      arch="x64"
+      ;;
+    arm64)
+      arch="arm64"
+      ;;
+    *)
+      echo "unsupported architecture \"${arch}\""
+      exit 1
+      ;;
+  esac
+
   temp_dir="$(mktemp -d)"
 
   pushd "${temp_dir}"
     echo "Downloading pnpm binaries ${version}"
 
-    curl "https://github.com/pnpm/pnpm/releases/download/v${version}/pnpm-linux-x64" \
+    mkdir "bin"
+
+    curl "https://github.com/pnpm/pnpm/releases/download/v${version}/pnpm-linux-${arch}" \
       --silent \
-      --output "pnpm-v${version}"
+      --output "${temp_dir}/bin/pnpm"
+
+    chmod +x
 
     tar zcvf "${output_dir}/temp.tgz" .
   popd
@@ -65,8 +96,8 @@ function main() {
     SHA256=$(sha256sum temp.tgz)
     SHA256="${SHA256:0:64}"
 
-    OUTPUT_TARBALL_NAME="node_v${version}_linux_x64_${target}_${SHA256:0:8}.tgz"
-    OUTPUT_SHAFILE_NAME="node_v${version}_linux_x64_${target}_${SHA256:0:8}.tgz.checksum"
+    OUTPUT_TARBALL_NAME="pnpm_${version}_${os}_${arch}_${target}_${SHA256:0:8}.tgz"
+    OUTPUT_SHAFILE_NAME="pnpm_${version}_${os}_${arch}_${target}_${SHA256:0:8}.tgz.checksum"
 
     echo "Building tarball ${OUTPUT_TARBALL_NAME}"
 

@@ -138,10 +138,6 @@ func Build(
 			DependencyCacheKey: dependency.Checksum,
 		}
 
-		pnpmLayer.ExecD = []string{
-			filepath.Join(pnpmLayer.Path, "pnpm"),
-		}
-
 		return packit.BuildResult{
 			Layers: []packit.Layer{pnpmLayer},
 			Build:  buildMetadata,

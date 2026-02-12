@@ -2,7 +2,7 @@ name: Update shared github-config
 
 on:
   schedule:
-  - cron: '27 13 * * *' # daily at 13:27 UTC
+  - cron: '27 13 * * *'  # daily at 13:27 UTC
   workflow_dispatch: {}
 
 concurrency: github_config_update
@@ -14,12 +14,12 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
 
     - name: Checkout github-config
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: paketo-buildpacks/github-config
         path: github-config
@@ -44,8 +44,8 @@ jobs:
       with:
         message: "Updating github-config"
         pathspec: "."
-        #keyid: ${{ secrets.PAKETO_BOT_GPG_SIGNING_KEY_ID }}
-        #key: ${{ secrets.PAKETO_BOT_GPG_SIGNING_KEY }}
+        keyid: ${{ secrets.PAKETO_BOT_GPG_SIGNING_KEY_ID }}
+        key: ${{ secrets.PAKETO_BOT_GPG_SIGNING_KEY }}
 
     - name: Push Branch
       if: ${{ steps.commit.outputs.commit_sha != '' }}
@@ -57,7 +57,7 @@ jobs:
       if: ${{ steps.commit.outputs.commit_sha != '' }}
       uses: paketo-buildpacks/github-config/actions/pull-request/open@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
         title: "Updates github-config"
         branch: automation/github-config/update
 

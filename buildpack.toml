@@ -11,35 +11,74 @@ api = "0.7"
     uri = "https://github.com/paketo-buildpacks/pnpm/blob/main/LICENSE"
 
 [metadata]
-  include-files = ["bin/run", "bin/build", "bin/detect", "buildpack.toml"]
-  pre-package = "./scripts/build.sh"
+  include-files = ["buildpack.toml", "linux/amd64/bin/build", "linux/amd64/bin/detect", "linux/amd64/bin/run", "linux/arm64/bin/build", "linux/arm64/bin/detect", "linux/arm64/bin/run"]
+  pre-package = "./scripts/build.sh --target linux/amd64 --target linux/arm64"
   [metadata.default_versions]
     pnpm = "10.*"
 
   [[metadata.dependencies]]
     arch = "amd64"
-    checksum = "sha256:e1cab530ea8252eb90e4add71d95838fd6f2656e6977f120df5ecb6f5b2822e0"
-    cpe = "cpe:2.3:a:pnpm:pnpm:10.13.1:*:*:*:*:*:*:*"
-    purl = "pkg:generic/pnpm@10.13.1?checksum=sha256:e1cab530ea8252eb90e4add71d95838fd6f2656e6977f120df5ecb6f5b2822e0\u0026download_url=https://github.com/pnpm/pnpm/releases/download/v10.13.1/pnpm-linux-x64"
+    checksum = "sha256:2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.29.3:*:*:*:*:*:*:*"
+    purl = "pkg:generic/pnpm@10.29.3?checksum=sha256:2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a&download_url=https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-x64"
     id = "pnpm"
+    licenses = ["MIT"]
     name = "pnpm"
-    source = "https://github.com/pnpm/pnpm/releases/download/v10.13.1/pnpm-linux-x64"
-    source-checksum = "sha256:e1cab530ea8252eb90e4add71d95838fd6f2656e6977f120df5ecb6f5b2822e0"
-    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy", "*"]
-    uri = "https://github.com/pnpm/pnpm/releases/download/v10.13.1/pnpm-linux-x64"
-    version = "10.13.1"
+    os = "linux"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-x64"
+    source-checksum = "sha256:2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a"
+    stacks = ["*"]
+    strip-components = 1
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-x64"
+    version = "10.29.3"
 
   [[metadata.dependencies]]
-    checksum = "sha256:9ee4e9c534db2d52b8aa4f953e53b512cb0772cdf5fe90faa13ea08f1f3fdffb"
-    cpe = "cpe:2.3:a:pnpm:pnpm:10.13.0:*:*:*:*:*:*:*"
-    purl = "pkg:generic/pnpm@10.13.0?checksum=sha256:9ee4e9c534db2d52b8aa4f953e53b512cb0772cdf5fe90faa13ea08f1f3fdffb\u0026download_url=https://github.com/pnpm/pnpm/releases/download/v10.13.0/pnpm-linux-x64"
+    arch = "amd64"
+    checksum = "sha256:f9a8e1652b83884da6a3c174f504220015001144cee8733c07df68c598d4c43a"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.29.2:*:*:*:*:*:*:*"
+    purl = "pkg:generic/pnpm@10.29.2?checksum=sha256:f9a8e1652b83884da6a3c174f504220015001144cee8733c07df68c598d4c43a&download_url=https://github.com/pnpm/pnpm/releases/download/v10.29.2/pnpm-linux-x64"
     id = "pnpm"
+    licenses = ["MIT"]
     name = "pnpm"
-    source = "https://github.com/pnpm/pnpm/releases/download/v10.13.0/pnpm-linux-x64"
-    source-checksum = "sha256:9ee4e9c534db2d52b8aa4f953e53b512cb0772cdf5fe90faa13ea08f1f3fdffb"
-    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy", "*"]
-    uri = "https://github.com/pnpm/pnpm/releases/download/v10.13.0/pnpm-linux-x64"
-    version = "10.13.0"
+    os = "linux"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.29.2/pnpm-linux-x64"
+    source-checksum = "sha256:f9a8e1652b83884da6a3c174f504220015001144cee8733c07df68c598d4c43a"
+    stacks = ["*"]
+    strip-components = 1
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.29.2/pnpm-linux-x64"
+    version = "10.29.2"
+
+  [[metadata.dependencies]]
+    arch = "arm64"
+    checksum = "sha256:ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.29.3:*:*:*:*:*:*:*"
+    purl = "pkg:generic/pnpm@10.29.3?checksum=sha256:ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127&download_url=https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-arm64"
+    id = "pnpm"
+    licenses = ["MIT"]
+    name = "pnpm"
+    os = "linux"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-arm64"
+    source-checksum = "sha256:ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127"
+    stacks = ["*"]
+    strip-components = 1
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-arm64"
+    version = "10.29.3"
+
+  [[metadata.dependencies]]
+    arch = "arm64"
+    checksum = "sha256:8bbbbf60e08b72df246e70c18ef2a515d4f7ce999c172e85f0b6972c3cd61a8c"
+    cpe = "cpe:2.3:a:pnpm:pnpm:10.29.2:*:*:*:*:*:*:*"
+    purl = "pkg:generic/pnpm@10.29.2?checksum=sha256:8bbbbf60e08b72df246e70c18ef2a515d4f7ce999c172e85f0b6972c3cd61a8c&download_url=https://github.com/pnpm/pnpm/releases/download/v10.29.2/pnpm-linux-arm64"
+    id = "pnpm"
+    licenses = ["MIT"]
+    name = "pnpm"
+    os = "linux"
+    source = "https://github.com/pnpm/pnpm/releases/download/v10.29.2/pnpm-linux-arm64"
+    source-checksum = "sha256:8bbbbf60e08b72df246e70c18ef2a515d4f7ce999c172e85f0b6972c3cd61a8c"
+    stacks = ["*"]
+    strip-components = 1
+    uri = "https://github.com/pnpm/pnpm/releases/download/v10.29.2/pnpm-linux-arm64"
+    version = "10.29.2"
 
   [[metadata.dependency-constraints]]
     constraint = "10.*"
@@ -47,11 +86,13 @@ api = "0.7"
     patches = 2
 
 [[stacks]]
-  id = "io.buildpacks.stacks.bionic"
-
-[[stacks]]
-  id = "io.buildpacks.stacks.jammy"
-
-[[stacks]]
   id = "*"
+
+[[targets]]
+  arch = "amd64"
+  os = "linux"
+
+[[targets]]
+  arch = "arm64"
+  os = "linux"
 

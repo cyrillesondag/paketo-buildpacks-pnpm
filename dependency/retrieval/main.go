@@ -10,7 +10,6 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"github.com/paketo-buildpacks/libdependency/github"
 	"github.com/paketo-buildpacks/libdependency/retrieve"
-	"github.com/paketo-buildpacks/libdependency/upstream"
 	"github.com/paketo-buildpacks/libdependency/versionology"
 	"github.com/paketo-buildpacks/packit/v2/cargo"
 )
@@ -104,13 +103,13 @@ func createDependencyVersionWithPlatform(versionFetcher versionology.VersionFetc
 		CPE:             fmt.Sprintf("cpe:2.3:a:pnpm:pnpm:%s:*:*:*:*:*:*:*", version),
 		Checksum:        dependencySHA,
 		ID:              "pnpm",
-		Licenses:        retrieve.LookupLicenses(asset.BrowserDownloadUrl, upstream.DefaultDecompress),
+		Licenses:        []interface{}{"MIT"},
 		Name:            "pnpm",
 		OS:              platform.OS,
 		PURL:            retrieve.GeneratePURL("pnpm", version, dependencySHA, asset.BrowserDownloadUrl),
 		Source:          asset.BrowserDownloadUrl,
 		SourceChecksum:  dependencySHA,
-		Stacks:          []string{"io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"},
+		Stacks:          []string{"*"},
 		URI:             asset.BrowserDownloadUrl,
 		Version:         version,
 		DeprecationDate: nil,

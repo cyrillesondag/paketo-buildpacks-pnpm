@@ -7,7 +7,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Masterminds/semver/v3"
 	"github.com/paketo-buildpacks/libdependency/github"
 	"github.com/paketo-buildpacks/libdependency/retrieve"
 	"github.com/paketo-buildpacks/libdependency/versionology"
@@ -17,14 +16,6 @@ import (
 type Asset struct {
 	BrowserDownloadUrl string `json:"browser_download_url"`
 	Digest             string `json:"digest"`
-}
-
-type PnpmMetadata struct {
-	SemverVersion *semver.Version
-}
-
-func (pnpmMetadata PnpmMetadata) Version() *semver.Version {
-	return pnpmMetadata.SemverVersion
 }
 
 func main() {
@@ -99,18 +90,18 @@ func createDependencyVersionWithPlatform(versionFetcher versionology.VersionFetc
 	}
 
 	return cargo.ConfigMetadataDependency{
-		Arch:            platform.Arch,
-		CPE:             fmt.Sprintf("cpe:2.3:a:pnpm:pnpm:%s:*:*:*:*:*:*:*", version),
-		Checksum:        dependencySHA,
-		ID:              "pnpm",
-		Licenses:        []interface{}{"MIT"},
-		Name:            "pnpm",
-		OS:              platform.OS,
-		PURL:            retrieve.GeneratePURL("pnpm", version, dependencySHA, asset.BrowserDownloadUrl),
-		Source:          asset.BrowserDownloadUrl,
-		SourceChecksum:  dependencySHA,
-		Stacks:          []string{"*"},
-		URI:             asset.BrowserDownloadUrl,
+		Arch:     platform.Arch,
+		CPE:      fmt.Sprintf("cpe:2.3:a:pnpm:pnpm:%s:*:*:*:*:*:*:*", version),
+		Checksum: dependencySHA,
+		ID:       "pnpm",
+		Licenses: []interface{}{"MIT"},
+		Name:     "pnpm",
+		OS:       platform.OS,
+		PURL:     retrieve.GeneratePURL("pnpm", version, dependencySHA, asset.BrowserDownloadUrl),
+		Source:   asset.BrowserDownloadUrl,
+		//SourceChecksum:  dependencySHA,
+		Stacks: []string{"*"},
+		//URI:             asset.BrowserDownloadUrl,
 		Version:         version,
 		DeprecationDate: nil,
 		StripComponents: 1,

@@ -78,15 +78,15 @@ function main() {
   temp_dir="$(mktemp -d)"
 
   pushd "${temp_dir}"
-    echo "Downloading pnpm binaries ${version}"
+    echo "Downloading pnpm binaries ${version} ${arch}"
 
     mkdir "bin"
 
-    curl "https://github.com/pnpm/pnpm/releases/download/v${version}/pnpm-linux-${arch}" \
+    curl "https://github.com/pnpm/pnpm/releases/download/v${version}/pnpm-${os}-${arch}" \
       --silent \
       --output "${temp_dir}/bin/pnpm"
 
-    chmod +x
+    chmod +x "${temp_dir}/bin/pnpm"
 
     tar zcvf "${output_dir}/temp.tgz" .
   popd

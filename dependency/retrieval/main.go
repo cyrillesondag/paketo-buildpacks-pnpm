@@ -32,6 +32,7 @@ func generateMetadataWithPlatform(versionFetcher versionology.VersionFetcher, pl
 	return []versionology.Dependency{{
 		ConfigMetadataDependency: dependency,
 		SemverVersion:            versionFetcher.Version(),
+		Target:                   "bionic",
 	}}, nil
 }
 
@@ -102,9 +103,9 @@ func createDependencyVersionWithPlatform(versionFetcher versionology.VersionFetc
 		//SourceChecksum:  dependencySHA,
 		Stacks: []string{"*"},
 		//URI:             asset.BrowserDownloadUrl,
-		Version:         version,
-		DeprecationDate: nil,
-		StripComponents: 1,
+		Version: version,
+		//DeprecationDate: nil,
+		//StripComponents: 1,
 	}, nil
 }
 

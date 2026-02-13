@@ -64,21 +64,25 @@ jobs:
 
     - name: docker build
       id: docker-build
-      env:
-        SKIP_LOGIN: true
+      #env:
+      #  SKIP_LOGIN: true
       if: ${{ inputs.shouldCompile == true || inputs.shouldCompile == 'true' }}
-      uses: actions-hub/docker/cli@master
-      with:
-        args: "build ${{ (inputs.os != '' && inputs.arch != '') && format('--platform {0}/{1}', inputs.os, inputs.arch) || '' }} -t compilation -f dependency/actions/compile/${{ inputs.target }}.Dockerfile dependency/actions/compile"
+      #uses: actions-hub/docker/cli@master
+      #with:
+      #  args: "build ${{ (inputs.os != '' && inputs.arch != '') && format('--platform {0}/{1}', inputs.os, inputs.arch) || '' }} -t compilation -f dependency/actions/compile/${{ inputs.target }}.Dockerfile dependency/actions/compile"
+      run: |
+        docker build ${{ (inputs.os != '' && inputs.arch != '') && format('--platform {0}/{1}', inputs.os, inputs.arch) || '' }} -t compilation -f dependency/actions/compile/${{ inputs.target }}.Dockerfile dependency/actions/compile
 
     - name: docker run
       id: docker-run
-      uses: actions-hub/docker/cli@master
-      env:
-        SKIP_LOGIN: true
+      #uses: actions-hub/docker/cli@master
+      #env:
+      #  SKIP_LOGIN: true
       if: ${{ inputs.shouldCompile == true || inputs.shouldCompile == 'true' }}
-      with:
-        args: "run ${{ (inputs.os != '' && inputs.arch != '') && format('--platform {0}/{1}', inputs.os, inputs.arch) || '' }} -v ${{ steps.compile-setup.outputs.outputdir }}:/home compilation --outputDir /home --target ${{ inputs.target }} --version ${{ inputs.version }} ${{ inputs.os != '' && format('--os {0}', inputs.os) || '' }} ${{ inputs.arch != '' && format('--arch {0}', inputs.arch) || '' }}"
+      #with:
+      #  args: "run ${{ (inputs.os != '' && inputs.arch != '') && format('--platform {0}/{1}', inputs.os, inputs.arch) || '' }} -v ${{ steps.compile-setup.outputs.outputdir }}:/home compilation --outputDir /home --target ${{ inputs.target }} --version ${{ inputs.version }} ${{ inputs.os != '' && format('--os {0}', inputs.os) || '' }} ${{ inputs.arch != '' && format('--arch {0}', inputs.arch) || '' }}"
+      run: |
+        docker run ${{ (inputs.os != '' && inputs.arch != '') && format('--platform {0}/{1}', inputs.os, inputs.arch) || '' }} -v ${{ steps.compile-setup.outputs.outputdir }}:/home compilation --outputDir /home --target ${{ inputs.target }} --version ${{ inputs.version }} ${{ inputs.os != '' && format('--os {0}', inputs.os) || '' }} ${{ inputs.arch != '' && format('--arch {0}', inputs.arch) || '' }}
 
     - name: Print contents of output dir
       shell: bash

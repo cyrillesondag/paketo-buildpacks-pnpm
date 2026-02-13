@@ -4,6 +4,10 @@ set -euo pipefail
 
 main() {
   local tarball_path version os arch
+  tarball_path=
+  version=
+  os=
+  arch=
 
   while [ "${#}" != 0 ]; do
     case "${1}" in

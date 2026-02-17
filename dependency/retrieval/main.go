@@ -91,21 +91,21 @@ func createDependencyVersionWithPlatform(versionFetcher versionology.VersionFetc
 	}
 
 	return cargo.ConfigMetadataDependency{
-		Arch:     platform.Arch,
-		CPE:      fmt.Sprintf("cpe:2.3:a:pnpm:pnpm:%s:*:*:*:*:*:*:*", version),
-		Checksum: dependencySHA,
-		ID:       "pnpm",
-		Licenses: []interface{}{"MIT"},
-		Name:     "pnpm",
-		OS:       platform.OS,
-		PURL:     retrieve.GeneratePURL("pnpm", version, dependencySHA, asset.BrowserDownloadUrl),
-		Source:   asset.BrowserDownloadUrl,
-		//SourceChecksum:  dependencySHA,
-		Stacks: []string{"*"},
-		//URI:             asset.BrowserDownloadUrl,
-		Version: version,
-		//DeprecationDate: nil,
-		//StripComponents: 1,
+		Arch:            platform.Arch,
+		CPE:             fmt.Sprintf("cpe:2.3:a:pnpm:pnpm:%s:*:*:*:*:*:*:*", version),
+		Checksum:        dependencySHA,
+		ID:              "pnpm",
+		Licenses:        []interface{}{"MIT"},
+		Name:            "pnpm",
+		OS:              platform.OS,
+		PURL:            retrieve.GeneratePURL("pnpm", version, dependencySHA, asset.BrowserDownloadUrl),
+		Source:          asset.BrowserDownloadUrl,
+		SourceChecksum:  dependencySHA,
+		Stacks:          []string{"*"},
+		URI:             asset.BrowserDownloadUrl,
+		Version:         version,
+		DeprecationDate: nil,
+		StripComponents: 1,
 	}, nil
 }
 

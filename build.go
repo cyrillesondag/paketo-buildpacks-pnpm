@@ -138,6 +138,8 @@ func Build(
 			DependencyCacheKey: dependency.Checksum,
 		}
 
+		pnpmLayer.SharedEnv.Prepend("PATH", pnpmLayer.Path, string(os.PathListSeparator))
+
 		return packit.BuildResult{
 			Layers: []packit.Layer{pnpmLayer},
 			Build:  buildMetadata,

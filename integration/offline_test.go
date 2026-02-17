@@ -72,7 +72,7 @@ func testOffline(t *testing.T, context spec.G, it spec.S) {
 
 			Expect(err).NotTo(HaveOccurred(), logs.String())
 
-			container, err = docker.Container.Run.WithCommand("which pnpm").Execute(image.ID)
+			container, err = docker.Container.Run.WithCommand("command -v pnpm").Execute(image.ID)
 			Expect(err).NotTo(HaveOccurred())
 
 			Eventually(func() string {
